@@ -13,23 +13,21 @@ This repository focuses on plugin development, related project repositories can 
 
 ## Contributing
 
-We welcome new contributors. Not sure where to start? Check for any [open issues ][trello] or ping the team on [our slack channel](https://codeforfoco.slack.com/).  The [GitHub issue tracker][githubissue] is not currently used.
+We welcome new contributors. Not sure where to start? Check for any [open issues on our trello ][trello] or ping the team on [our slack channel](https://codeforfoco.slack.com/).  The [GitHub issue tracker][githubissue] is not currently used.
 
 Ensure your code follows best practices and adheres to good style.
 
-Contribution Workflow:
+Be sure to read our in depth guide on [contributing][contributing], which includes instructions on how to fork, clone, branch, commit, pull request and sync your fork.
+
+TL;DR Contribution Workflow:
 
 1. [Fork][fork] this repository and clone your fork.
-1. Make any changes, commit, and push.
+1. Make a patch branch.
+1. Make changes, commit and push.
 1. Submit a pull request and your changes will be reviewed and merged.
 
-If you are unfamiliar with git, check the resources below or ping us on Slack and we'll help you out.
 
-### Git
-
-- [Fork A Repo][fork]
-- [Github Workflow](https://guides.github.com/introduction/flow/)
-
+[contributing]: https://github.com/CodeForFoco/org/blob/master/CONTRIBUTING.md
 [trello]: https://trello.com/b/Zrj0doO2/fort-collins-bike-co-op
 [githubissue]: https://github.com/CodeForFoco/bike-coop/issues
 [fork]: https://help.github.com/articles/fork-a-repo/
