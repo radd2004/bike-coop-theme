@@ -91,7 +91,7 @@ foreach ($defaults as $key => $value) {
     $$key = $value;
 }
 
-if (isset ($_POST['submit'])) {
+if (isset ($_POST['first_name'])) {
     foreach ($_POST as $key => $value) {
         $$key = $value;
     }
@@ -258,12 +258,11 @@ if ($error_msg == '' && isset($_POST['submit'])) {
 }
 
 if (isset($_POST['submit'])) {
-    echo "<font color=\"yellow\" size=\"3\">The following problems were detected:<br><i>" . $error_msg . "</i></font><br>";
+    echo '<div style="color: red; font-weight:bold; font-style: italic;">The following problems were detected:' . $error_msg . "</div><br>";
 }
 ?>
 <form method="POST" enctype="multipart/form-data">
     <div class="heading">FC Bike Co-op Volunteer Application</div>
-    </td>
 
     <table width="550">
         <tr>
@@ -442,8 +441,7 @@ if (isset($_POST['submit'])) {
             <td colspan="2"><h2>Interests as a volunteer.</h2>(Move your mouse over an item to see a description.)
         </tr>
         <tr>
-            <td width="50% align=" right
-            ">
+            <td width="50% align="right">
 
             <input type=hidden name="greeter" value="0">
             <input type=checkbox name="greeter"
@@ -469,8 +467,7 @@ if (isset($_POST['submit'])) {
                     echo 'checked';
                 } ?>><strong
                     title="With all of the bikes and parts that come through the Co-op, there are a lot of parts that are broken or junk. Somebody has to go through it all.">Recycling</strong>
-            <td width="50% align=" right
-            ">
+            <td width="50% align=" right">
 
             <input type=hidden name="bars" value="0">
             <input type=checkbox name="bars"
@@ -539,8 +536,7 @@ if (isset($_POST['submit'])) {
                 for Kids</strong>
         </tr>
         <tr>
-            <td width="50% align=" right
-            ">
+            <td width="50% align=" right">
             <input type=hidden name="safety" value="0"><input type=checkbox name="safety"
                                                               value="1"<?php if ($safety == "1") {
                 echo 'checked';
@@ -578,4 +574,6 @@ if (isset($_POST['submit'])) {
 
     <h3>You do not need this form for community service. Stop by during <a href="http://fcbikecoop.org/calendar.php">public
             hours</a> to learn about serving community service at the Bike Co-op.</h3>
+
+    <input type="submit">
 </form>
