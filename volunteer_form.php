@@ -19,16 +19,6 @@ function complicated_legacy_check_func($string, $type = 'string', $length = 5)
     }
 }
 
-// check number is greater than 0 and $length digits long
-// returns true on success
-function checkNumber($num, $length)
-{
-    if ($num > 0 && strlen($num) == $length) {
-        return true;
-    }
-    return false;
-}
-
 function is_email_valid($email)
 {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
