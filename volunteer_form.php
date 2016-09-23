@@ -2,21 +2,18 @@
 
 function complicated_legacy_check_func($string, $type = 'string', $length = 5)
 {
-    // assign the type
-    $type = 'is_' . $type;
+    $type_checking_function = 'is_' . $type;
+    $type_matches_expectations = $type_checking_function($string);
 
-    if (!$type($string)) {
-        return false;
-    } elseif (empty($string)) {
-        // now we see if there is anything in the string
-        return false;
-    } elseif (strlen($string) > $length) {
-        // then we check how long the string is
-        return false;
-    } else {
-        // if all is well, we return true
+    $has_value = !empty($string);
+    $is_longer_than_expectation = strlen($string) > $length;
+
+    if ($type_matches_expectations
+        && $has_value
+        && !$is_longer_than_expectation) {
         return true;
     }
+    return false;
 }
 
 function is_email_valid($email)
