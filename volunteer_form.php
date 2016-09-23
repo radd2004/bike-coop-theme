@@ -1,7 +1,10 @@
 <?php
 
-function complicated_legacy_check_func($string, $type = 'string', $length = 5)
-{
+function legacy_check_function(
+    $string, 
+    $type = 'string', 
+    $length = 5
+) {
     $type_checking_function = 'is_' . $type;
     $type_matches_expectations = $type_checking_function($string);
 
@@ -86,19 +89,19 @@ if (isset ($_POST['first_name'])) {
     // Create an empty error_msg
     if (isset($_POST['first_name'], $_POST['last_name'], $_POST['phone'], $_POST['email'], $_POST['address'])) {
         // check the POST variable firstname is sane, and is not empty
-        if (empty($_POST['first_name']) == false && complicated_legacy_check_func($_POST['first_name'], 'string', 25) != false) {
+        if (empty($_POST['first_name']) == false && legacy_check_function($_POST['first_name'], 'string', 25) != false) {
             $firstname = ucwords($_POST['first_name']);
         } else {
             $error_msg .= "* first name is not set.<br />";
         }
         // check the POST variable lastname is sane, and is not empty
-        if (empty($_POST['last_name']) == false && complicated_legacy_check_func($_POST['last_name'], 'string', 25) != false) {
+        if (empty($_POST['last_name']) == false && legacy_check_function($_POST['last_name'], 'string', 25) != false) {
             $lastname = ucwords($_POST['last_name']);
         } else {
             $error_msg .= "* last name is not set.<br />";
         }
         // check for valid email address
-        if (complicated_legacy_check_func($_POST['email'], 'string', 50) != false) {
+        if (legacy_check_function($_POST['email'], 'string', 50) != false) {
             if (is_email_valid($_POST['email']) != false) {
                 $email = $_POST['email'];
             } else {
@@ -109,7 +112,7 @@ if (isset ($_POST['first_name'])) {
         }
         // check the sanity of the zipcode and that it is greater than zero and 5 digits long - it can be left blank
         $zip = substr($_POST['zip'], 0, 5);
-        if (!(complicated_legacy_check_func($zip) != false && strlen($zip) == 5)) {
+        if (!(legacy_check_function($zip) != false && strlen($zip) == 5)) {
             $zip = '';
         }
         //check the date of birth
