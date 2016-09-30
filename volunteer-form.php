@@ -262,8 +262,8 @@
         </tr>
         <tr>
             <td width="50%" align="right" style="border-bottom: none;">
-            <input type=hidden name="safety" value="0">
-            <input type=checkbox name="safety" value="1" <?php if ($safety == "1"): echo 'checked'; endif; ?>>
+            <input type=hidden name="teach" value="0">
+            <input type=checkbox name="teach" value="1" <?php if ($teach == "1"): echo 'checked'; endif; ?>>
                 <strong href="#" title="Help educate our community on bicycle safety and smart cycling based on the vehicular cycling principles of the League of American Bicyclists.  Work with the Co-op’s Smart Cycling coordinator to teach classes to kids and adults, including bike skills workshops (also called “bike rodeos”).  We hope to eventually lead smart cycling rides in town to demonstrate the principles that we teach.">Bike Safety Education</strong>
             </td>
             <td></td>

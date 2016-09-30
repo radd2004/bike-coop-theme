@@ -119,7 +119,6 @@ $defaults = [
     'representative' => '',
     'kid_trips' => '',
     'concerns' => '',
-
     'bars' => 0,
     'cleaning' => 0,
     'fundraising' => 0,
@@ -205,7 +204,7 @@ if (isset ($_POST['first_name'])) {
         $fundraising = $_POST['fundraising'];
         $community = $_POST['community'];
         $local_events = $_POST['local_events'];
-        $safety = $_POST['safety'];
+        $teach = $_POST['safety'];
         $expectations = $_POST['expectations'];
         $concerns = $_POST['concerns'];
     }
@@ -245,18 +244,20 @@ if ($error_msg == '' && isset($_POST['first_name'])) {
         // 'greeter' => $greeter,
         'mechanic' => $mechanic,
         'recycling' => $recycling,
-        // 'bars' => $bars,
-        // 'cleaning' => $cleaning,
+        'bike_retrieval' => $bars,
+        'organize_shop' => $cleaning,
         'handyman' => $handyman,
         'newsletter' => $newsletter,
         'art' => $art,
+        'teach' => $teach,
         // 'fundraising' => $fundraising,
         // 'community' => $community,
+        'representative' => $representative,
         'events' => $local_events,
         'kid_trips' => $kidtrips,
-        'bike_safety' => $safety,
+        'bike_safety' => $teach,
         'expectations' => $expectations,
-        // 'concerns' => $concerns,
+        'comments' => $concerns,
         'app_date' => date('Y-m-d'),
     ];
     insert_data_give_wpdb_and_data($wpdb, $data);
