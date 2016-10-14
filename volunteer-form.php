@@ -136,28 +136,28 @@
     <tr>
         <td align=left colspan="2">How did you learn about the Co-op?</td>
     </tr>
-    <td align=left colspan="2"><input type=hidden name="how_learn" value="NULL">
-        <textarea name="how_learn"
-                  rows="5"><?php echo $how_learn; ?></textarea></tr>
+    <td align=left colspan="2">
+        <textarea name="how_learn" 
+                rows="5" cols="65"
+                 ><?php echo $how_learn; ?></textarea>
+        </tr>
         <tr>
             <td align=left colspan="2">Do you have any prior experience fixing bikes? Explain...</td>
         </tr>
     </td>
     <td align=left colspan="2">
-        <input type=hidden name="experience" value="NULL">
         <textarea name="experience"
                   rows="5" cols="65"
-                  wrap="virtual"><?php echo $experience; ?></textarea>
+                 ><?php echo $experience; ?></textarea>
         </tr>
         <tr>
             <td align=left colspan="2">Do you have any other skills that may help the Co-op?</td>
         </tr>
     </td>
     <td align=left colspan="2">
-        <input type=hidden name="other_skills" value="NULL">
         <textarea name="other_skills"
                   rows="5" cols="65"
-                  wrap="virtual"><?php echo $other_skills; ?></textarea>
+                 ><?php echo $other_skills; ?></textarea>
         </tr>
         <tr>
             <td align=left colspan="2">How skilled are you with tools?</td>
@@ -181,12 +181,10 @@
         </tr>
         
         <tr>
-            <td colspan="2"><h2>Interests as a volunteer.</h2>(Move your mouse over an item to see a description.)
+            <td colspan="2"><h2>Interests as a volunteer</h2><p>(Move your mouse over an item to see a description.)</p>
         </tr>
         <tr>
             <td width="50% align="right">
-
-            <input type=hidden name="greeter" value="0">
             <input type=checkbox name="greeter"
                    value="1" <?php if ($greeter): echo 'checked'; endif; ?>>
                    <strong
@@ -194,90 +192,86 @@
                 Desk / Retail / Representative</strong>
             <td width="50% align=" right
             ">
-            <input type=hidden name="mechanic" value="0">
             <input type=checkbox name="mechanic"
                    value="1" <?php if ($mechanic): echo 'checked'; endif; ?> ><strong
                 title="Our bike mechanics work on sorting donations, building/fixing bikes and teaching people during open shop. You will need to have demonstrable bike mechanic skills to do this work.">Bike
                 Mechanic</strong>
         </tr>
         <tr>
-            <td align="left"><input type=hidden name="recycling" value="0">
+            <td align="left">
                 <input type=checkbox name="recycling"
                        value="1" <?php if ($recycling): echo 'checked'; endif; ?>>
                        <strong
                     title="With all of the bikes and parts that come through the Co-op, there are a lot of parts that are broken or junk. Somebody has to go through it all.">Recycling</strong>
             <td width="50% align=" right">
 
-            <input type=hidden name="bars" value="0">
             <input type=checkbox name="bars"
                    value="1" <?php if ($bars): echo 'checked'; endif; ?>>
             <strong
                 title="Respond to public reports of lost and abandoned bikes to coordinate retrieval; work with Police Services in tracking found bikes and returning them to their owners.">Bike Retrieval</strong>
         </tr>
         <tr>
-            <td align="left"><input type=hidden name="cleaning" value="0"><input type=checkbox
+            <td align="left">
+            <input type=checkbox
                 name="cleaning" <?php if ($cleaning): echo 'checked'; endif; ?>>Cleaning/Organizing the Shop
             <td width="50% align=" right
             ">
 
-            <input type=hidden name="handyman" value="0">
             <input type=checkbox name="handyman"
                    value="1" <?php if ($handyman): echo 'checked'; endif; ?>><strong
                 title="Projects range from installing sinks, running low voltage and 110vac wiring, replacing a staircase, building partition walls etc.  Will work with construction leader to complete a variety of projects.">Handyman/Construction</strong>
         </tr>
         <tr>
             <td align="left">
-                <input type=hidden name="newsletter" value="0">
                 <input type=checkbox name="newsletter"
                        value="1" <?php if ($newsletter): echo 'checked'; endif; ?>>Newsletter Drafting/PR
             <td align="left">
-                <input type=hidden name="art" value="0">
                 <input type=checkbox name="art"
                        value="1" <?php if ($art): echo 'checked'; endif; ?>
                        >Art Contributions / Graphic Design
         </tr>
         <tr>
-            <td align="left"><input type=hidden name="fundraising" value="0">
+            <td align="left">
                 <input type=checkbox name="fundraising"
                        value="1" <?php if ($fundraising): echo 'checked'; endif; ?>>Fundraising / Grant Writing
             <td width="50% align=" right
             ">
-            <input type=hidden name="community" value="0">
             <input type=checkbox name="community"
                    value="1" <?php if ($community): echo 'checked'; endif; ?>>Helping with Community Outreach
         </tr>
         <tr>
-            <td align="left"><input type=hidden name="local_events" value="0"><input type=checkbox name="local_events" value="1" 
+            <td align="left"><input type=checkbox name="local_events" value="1" 
                 <?php if ($local_events): echo 'checked'; endif; ?>>Assist With Local Bike Events
             </td>
             <td width="50%" align="right">
-            <input type=hidden name="kidtrips" value="0"><input type=checkbox name="kidtrips"
+            <input type=checkbox name="kidtrips"
                     value="1" <?php if ($kidtrips): echo 'checked'; endif; ?>><strong
                 title="Trips for Kids a program that takes underprivileged kids aged 10-15 out on mountain bike rides on Saturday mornings. We need mechanics and ride volunteers.">Trips for Kids</strong>
             </td>
         </tr>
         <tr>
             <td width="50%" align="right" style="border-bottom: none;">
-            <input type=hidden name="teach" value="0">
             <input type=checkbox name="teach" value="1" <?php if ($teach): echo 'checked'; endif; ?>>
                 <strong href="#" title="Help educate our community on bicycle safety and smart cycling based on the vehicular cycling principles of the League of American Bicyclists.  Work with the Co-op’s Smart Cycling coordinator to teach classes to kids and adults, including bike skills workshops (also called “bike rodeos”).  We hope to eventually lead smart cycling rides in town to demonstrate the principles that we teach.">Bike Safety Education</strong>
             </td>
             <td></td>
         </tr>
-        <tr><td width="100%"><hr></td></tr>
+        <tr>
+            <td align=left colspan="2"><h2>Final Questions</h2></td>
+        </tr>
         <tr>
             <td align=left colspan="2">What are your expectations out of volunteering for the Co-op?</td>
         </tr>
         <tr>
-            <td align=left colspan="2"><input type=hidden name="expectations" value="NULL">
-                <textarea name="expectations" rows="5" cols="65" wrap="virtual"><?php echo $expectations ?></textarea>
+            <td align=left colspan="2">
+            <textarea name="expectations" rows="5" cols="65"><?php echo $expectations ?></textarea>
         </tr>
         <tr>
             <td align=left colspan="2">Any other questions, comments, or concerns?</td>
         </tr>
         <tr>
-            <td align=left colspan="2"><input type=hidden name="concerns" value="NULL">
-                <textarea name="concerns" rows="5" cols="65" wrap="virtual"><?php echo $concerns ?></textarea>
+            <td align=left colspan="2">
+                <textarea name="concerns" rows="5" cols="65"><?php echo $concerns ?></textarea>
         </tr>
 </table>
 
@@ -287,5 +281,5 @@
     <h3>You do not need this form for community service. Stop by during <a href="http://fcbikecoop.org/calendar.php">public
             hours</a> to learn about serving community service at the Bike Co-op.</h3>
 
-    <input type="submit">
+    <input type="submit" value="Submit">
 </form>

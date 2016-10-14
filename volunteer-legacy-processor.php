@@ -114,13 +114,13 @@ if (isset ($_POST['first_name'])) {
     // Create an empty error_msg
     if (isset($_POST['first_name'], $_POST['last_name'], $_POST['phone'], $_POST['email'], $_POST['address'])) {
         // check the POST variable firstname is sane, and is not empty
-        if (strlen($_POST['first_name']) < 2) {
+        if (strlen($_POST['first_name']) > 2) {
             $firstname = ucwords($_POST['first_name']);
         } else {
             $error_msg .= "* Please enter a full first name<br />";
         }
         // check the POST variable lastname is sane, and is not empty
-        if (strlen($_POST['last_name']) < 2) {
+        if (strlen($_POST['last_name']) > 2) {
             $lastname = ucwords($_POST['last_name']);
         } else {
             $error_msg .= "* Please enter a full last name<br />";
@@ -141,7 +141,7 @@ if (isset ($_POST['first_name'])) {
             $zip = '';
         }
         //check the date of birth
-        if (empty($_POST['dob']) == false) {
+        if (strpos($_POST['dob'], '/') !== false) {
             $dt = $_POST['dob'];
             $arr = preg_split("/[\/]/", $dt); // splitting the array
             $mm = str_pad($arr[0], 2, "0", STR_PAD_LEFT); // first element of the array is month
@@ -153,9 +153,8 @@ if (isset ($_POST['first_name'])) {
                 $dob = $mm . "/" . $dd . "/" . $yy;
             }
         } else {
-            $error_msg .= "* Please enter your date of birth<br />";
+            $error_msg .= "* Please enter a valid date of birth<br />";
         }
-        // convert stuff to initial caps
         $address = ucwords(strtolower($_POST['address']));
         $city = ucwords(strtolower($_POST['city']));
         $emergency_contact = ucwords(strtolower($_POST['emergency_contact']));
@@ -167,29 +166,22 @@ if (isset ($_POST['first_name'])) {
         $experience = $_POST['experience'];
         $other_skills = $_POST['other_skills'];
         $skill_level = $_POST['skill_level'];
-        $greeter = $_POST['greeter'];
-        $mechanic = $_POST['mechanic'];
-        $recycling = $_POST['recycling'];
-        $bars = $_POST['bars'];
-        $cleaning = $_POST['cleaning'];
-        $handyman = $_POST['handyman'];
-        $newsletter = $_POST['newsletter'];
-        $art = $_POST['art'];
-        $fundraising = $_POST['fundraising'];
-        $community = $_POST['community'];
-        $local_events = $_POST['local_events'];
-        $teach = $_POST['safety'];
+        $greeter = isset($_POST['greeter']) ? 1 : 0;
+        $mechanic = isset($_POST['mechanic']) ? 1 : 0;
+        $recycling = isset($_POST['recycling']) ? 1 : 0;
+        $bars = isset($_POST['bars']) ? 1 : 0;
+        $cleaning = isset($_POST['cleaning']) ? 1 : 0;
+        $handyman = isset($_POST['handyman']) ? 1 : 0;
+        $newsletter = isset($_POST['newsletter']) ? 1 : 0;
+        $art = isset($_POST['art']) ? 1 : 0;
+        $fundraising = isset($_POST['fundraising']) ? 1 : 0;
+        $community = isset($_POST['community']) ? 1 : 0;
+        $local_events = isset($_POST['local_events']) ? 1 : 0;
+        $teach = isset($_POST['teach']) ? 1 : 0;
         $expectations = $_POST['expectations'];
         $concerns = $_POST['concerns'];
     }
 }
-
-// END BASIC ERROR CHECKING
-// You need to create your own code to validate the information
-// and allowed values - never send "unclean" user responses
-// to a database without cleaning them up and
-// checking for allowed answers.
-// Google for "SQL injection" and "insecure contact form"
 
 // Do this if no errors were detected AND form has been submitted
 if ($error_msg == '' && isset($_POST['first_name'])) {
@@ -215,17 +207,19 @@ if ($error_msg == '' && isset($_POST['first_name'])) {
         'experience' => $experience,
         'other_skills' => $other_skills,
         'skill_level' => $skill_level,
-        // 'greeter' => $greeter,
         'mechanic' => $mechanic,
         'recycling' => $recycling,
         'bike_retrieval' => $bars,
         'organize_shop' => $cleaning,
         'handyman' => $handyman,
+        'web' => $newsletter, // YO, DOUBLE USED!
         'newsletter' => $newsletter,
+        'recruit' => $fundraising, // YO, DOUBLE USED!
         'art' => $art,
         'teach' => $teach,
-        // 'fundraising' => $fundraising,
-        // 'community' => $community,
+        'grant_writing' => $fundraising,
+        'web' => $web,
+        'outreach' => $community,
         'representative' => $representative,
         'events' => $local_events,
         'kid_trips' => $kidtrips,
@@ -244,5 +238,5 @@ if ($error_msg == '' && isset($_POST['first_name'])) {
 }
 
 if ($error_msg !== '') {
-    echo '<div style="color: red; font-weight:bold; font-style: italic;">The following problems were detected:' . $error_msg . "</div><br>";
+    echo '<div style="color: red; font-weight:bold; font-style: italic;">The following problems were detected:<br>' . $error_msg . "</div><br>";
 }
