@@ -16,3 +16,10 @@ function fcbc_volunteer_form() {
 	include 'volunteer-form.php';
 	return ob_get_clean();
 }
+
+add_shortcode( 'fcbc_abandoned_bike_form', 'fcbc_abandoned_bike_form' );
+function fcbc_abandoned_bike_form() {
+	ob_start();
+	include 'abandoned-bike.php';
+	return ob_get_clean();
+}
