@@ -81,16 +81,16 @@ $defaults = [
     'organize_shop' => '',
     'outreach' => '',
     'grant_writing' => '',
-    'web' => '',
+    'web' => 0,
     'art' => '',
     'handyman' => '',
     'expectations' => '',
     'comments' => '',
     'newsletter' => '',
-    'recruit' => '',
+    'recruit' => 0,
     'events' => '',
     'bike_safety' => '',
-    'representative' => '',
+    'representative' => 0,
     'kid_trips' => '',
     'concerns' => '',
     'bars' => 0,
@@ -212,9 +212,9 @@ if ($error_msg == '' && isset($_POST['first_name'])) {
         'bike_retrieval' => $bars,
         'organize_shop' => $cleaning,
         'handyman' => $handyman,
-        'web' => $newsletter, // YO, DOUBLE USED!
+        'web' => $web, // YO, DOUBLE USED!
         'newsletter' => $newsletter,
-        'recruit' => $fundraising, // YO, DOUBLE USED!
+        'recruit' => $recruit, // YO, DOUBLE USED!
         'art' => $art,
         'teach' => $teach,
         'grant_writing' => $fundraising,
@@ -230,10 +230,7 @@ if ($error_msg == '' && isset($_POST['first_name'])) {
     ];
     $wpdb->insert('volunteers', $data);
 
-    // No errors were detected.
-    // $volid = mysql_insert_id();
-    // Redirect to confirmation page.
-    echo 'Form saved!';
+    echo 'Thanks for sending us you data. We\'ll be in touch soon!';
     die;
 }
 
