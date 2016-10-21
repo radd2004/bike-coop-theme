@@ -53,7 +53,7 @@ if ($error_msg == '' && isset($_POST['submit'])) {
     // This version is for production and should the commented out when in test.
     $mail_to = 'bars@fcbikecoop.org';
     // This version is for testing and should the commented out when in production.
-	$mail_to = 'test@davidbhayes.com';
+    $mail_to = 'test@davidbhayes.com';
 
     wp_mail($mail_to, "Abandoned Bike - $address",
         "Abandoned Bike Report Form
@@ -98,19 +98,19 @@ if ($error_msg == '' && isset($_POST['submit'])) {
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2216 ;'
     );
     $wpdb->insert('abandoned_bike', [
-    	'contact' => $contact,
-    	'address' => $address,
-    	'phone' => $phone,
+        'contact' => $contact,
+        'address' => $address,
+        'phone' => $phone,
 
-    	'brand' => $brand,
-    	'model' => $model,
-    	'color' => $color,
-    	'is_locked' => $locked,
-    	'lock' => $lock,
-    	'location' => $location,
-    	'how_long' => $howlong,
-    	'info' => $info,
-	]);
+        'brand' => $brand,
+        'model' => $model,
+        'color' => $color,
+        'is_locked' => $locked,
+        'lock' => $lock,
+        'location' => $location,
+        'how_long' => $howlong,
+        'info' => $info,
+    ]);
     // end of email to staff
     // Redirect to confirmation page.
     echo 'Report accepted. Thanks!';
@@ -148,19 +148,20 @@ if (isset($_POST['submit'])) {
         <p>Thank you for helping keep bikes out of the landfill and getting them back on the road!
         </p>
         <h4>CONTACT INFORMATION</h4>
-        <p>Name: <input name="contact" type="text" id="contact" size="15" maxlength="25" value="<?php echo $contact; ?>">
+        <p>Name: <input name="contact" type="text" id="contact" size="15" maxlength="25"
+                        value="<?php echo $contact; ?>">
             Address: <input name="address" type="text" id="address" size="35" maxlength="50"
                             value="<?php echo $address; ?>">
         <p>Phone: <input name="phone" type="text" id="phone" size="13" maxlength="13" value="<?php echo $phone; ?>">
-        <p>Location of bike at the above address: 
-        <input name="location" type="text" id="location" size="25"
-                    maxlength="35" value="<?php echo $location; ?>">
+        <p>Location of bike at the above address:
+            <input name="location" type="text" id="location" size="25"
+                   maxlength="35" value="<?php echo $location; ?>">
         <h4>BIKE DESCRIPTION</h4>
         <p>Brand: <input name="brand" type="text" id="brand" size="15" maxlength="25" value="<?php echo $brand; ?>">
             Model: <input name="model" type="text" id="model" size="15" maxlength="25" value="<?php echo $model; ?>">
             Color: <input name="color" type="text" id="color" size="15" maxlength="25" value="<?php echo $color; ?>">
-        <p>Is it locked? 
-        	<input type='radio' name='locked'
+        <p>Is it locked?
+            <input type='radio' name='locked'
                    value='yes' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'yes' ? ' checked' : ''; ?>>Yes
             <input type='radio' name='locked'
                    value='no' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'no' ? ' checked' : ''; ?>>No
