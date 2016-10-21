@@ -26,7 +26,7 @@ if (isset ($_POST['submit'])) {
     $necessaryFieldsSet = isset($_POST['contact'], $_POST['address'], $_POST['phone']);
     if ($necessaryFieldsSet != FALSE) {
         // check the POST variable contact is sane, and is not empty
-        $contact = ucwords($_POST['contact'])
+        $contact = ucwords($_POST['contact']);
         if (strlen($contact) < 1 && strlen($contact) > 50) {
             $error_msg .= "* Please make sure you enter your name<br />";
         }
@@ -53,9 +53,9 @@ if ($error_msg == '' && isset($_POST['submit'])) {
     // This version is for production and should the commented out when in test.
     $mail_to = 'bars@fcbikecoop.org';
     // This version is for testing and should the commented out when in production.
-//	$mail_to = 'FCBC.Paul@gmail.com';
+	$mail_to = 'test@davidbhayes.com';
 
-    mail($mail_to, "Abandoned Bike - $address",
+    wp_mail($mail_to, "Abandoned Bike - $address",
         "Abandoned Bike Report Form
 	An abandoned bike has been reported via the website.  Please contact $contact at $phone within 24 hours of receiving this email.
 
@@ -78,10 +78,43 @@ if ($error_msg == '' && isset($_POST['submit'])) {
 
 	",
         "From: bars@fcbikecoop.org");
+
+    global $wpdb;
+    $wpdb->query('CREATE TABLE IF NOT EXISTS `abandoned_bike` (
+          `id` int(10) NOT NULL AUTO_INCREMENT,
+	    	`contact` text,
+	    	`address` text,
+	    	`phone` varchar(255),
+
+	    	`brand` varchar(255),
+	    	`model` varchar(255),
+	    	`color` varchar(255),
+	    	`is_locked` boolean,
+	    	`lock` varchar(255),
+	    	`location` text,
+	    	`how_long` text,
+	    	`info` text,
+          PRIMARY KEY (`id`)
+        ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2216 ;'
+    );
+    $wpdb->insert('abandoned_bike', [
+    	'contact' => $contact,
+    	'address' => $address,
+    	'phone' => $phone,
+
+    	'brand' => $brand,
+    	'model' => $model,
+    	'color' => $color,
+    	'is_locked' => $locked,
+    	'lock' => $lock,
+    	'location' => $location,
+    	'how_long' => $howlong,
+    	'info' => $info,
+	]);
     // end of email to staff
     // Redirect to confirmation page.
-    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=bike_report_done.php">';
-    exit;
+    echo 'Report accepted. Thanks!';
+    die;
 }
 
 // If the form has been submitted,
