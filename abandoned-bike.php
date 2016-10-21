@@ -1,23 +1,4 @@
 <?php
-function sanityCheck($string, $type, $length)
-{
-    // assign the type
-    $type = 'is_' . $type;
-
-    if (!$type($string)) {
-        return FALSE;
-    } // now we see if there is anything in the string
-    elseif (empty($string)) {
-        return FALSE;
-    } // then we check how long the string is
-    elseif (strlen($string) > $length) {
-        return FALSE;
-    } else {
-        // if all is well, we return TRUE
-        return TRUE;
-    }
-}
-
 // set defaults for form
 // CONTACT
 $contact = '';
@@ -45,21 +26,16 @@ if (isset ($_POST['submit'])) {
     $necessaryFieldsSet = isset($_POST['contact'], $_POST['address'], $_POST['phone']);
     if ($necessaryFieldsSet != FALSE) {
         // check the POST variable contact is sane, and is not empty
-        if (empty($_POST['contact']) == FALSE && sanityCheck($_POST['contact'], 'string', 25) != FALSE) {
-            $contact = ucwords($_POST['contact']);
-        } else {
+        $contact = ucwords($_POST['contact'])
+        if (strlen($contact) < 1 && strlen($contact) > 50) {
             $error_msg .= "* Please make sure you enter your name<br />";
         }
-        // check the POST variable address is sane, and is not empty
-        if (empty($_POST['address']) == FALSE && sanityCheck($_POST['address'], 'string', 50) != FALSE) {
-            $address = ucwords($_POST['address']);
-        } else {
+        $address = ucwords($_POST['address']);
+        if (strlen($address) < 1 && strlen($address) > 50) {
             $error_msg .= "* Please include an address<br />";
         }
-        // check the POST variable phone is sane, and is not empty
-        if (empty($_POST['phone']) == FALSE && sanityCheck($_POST['phone'], 'string', 13) != FALSE) {
-            $phone = $_POST['phone'];
-        } else {
+        $phone = $_POST['phone'];
+        if (strlen($address) < 7 && strlen($address) > 13) {
             $error_msg .= "* Please provide a phone number so we can contact you<br />";
         }
         // Remove the escape characters from the info text.
