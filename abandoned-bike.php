@@ -1,10 +1,4 @@
 <?php
-// check ALL the POST variables
-function checkSet()
-{
-    return isset($_POST['contact'], $_POST['address'], $_POST['phone']);
-}
-
 function sanityCheck($string, $type, $length)
 {
     // assign the type
@@ -24,6 +18,20 @@ function sanityCheck($string, $type, $length)
     }
 }
 
+// set defaults for form
+// CONTACT
+$contact = '';
+$address = '';
+$phone = '';
+$location = '';
+// BIKE DESC
+$brand = '';
+$model = '';
+$color = '';
+$lock = false;
+$howlong = '';
+$info = '';
+
 $error_msg = "Please fill in the form.<br />";
 
 if (isset ($_POST['submit'])) {
@@ -33,18 +41,8 @@ if (isset ($_POST['submit'])) {
 
     // Create an empty error_msg
     $error_msg = '';
-    require_once('/var/www/fcbikecoop.org/root/recaptcha/recaptchalib.php');
-    $privatekey = "6LcljgQAAAAAAPouSflWvq1dlfio5lRYJ4RvEsGt";
-    $publickey = "6LcljgQAAAAAAL1T9O8K4Rv0n3at7RUhFQBsLnoG";
-    $resp = recaptcha_check_answer($privatekey,
-        $_SERVER["REMOTE_ADDR"],
-        $_POST["recaptcha_challenge_field"],
-        $_POST["recaptcha_response_field"]);
-    if (!$resp->is_valid) {
-        $error = $resp->error;
-        $error_msg .= "* incorrect Captcha response<br />";
-    }
-    if (checkSet() != FALSE) {
+    $necessaryFieldsSet = isset($_POST['contact'], $_POST['address'], $_POST['phone']);
+    if ($necessaryFieldsSet != FALSE) {
         // check the POST variable contact is sane, and is not empty
         if (empty($_POST['contact']) == FALSE && sanityCheck($_POST['contact'], 'string', 25) != FALSE) {
             $contact = ucwords($_POST['contact']);
@@ -67,13 +65,6 @@ if (isset ($_POST['submit'])) {
         $info = stripslashes($_POST['info']);
     }
 }
-
-// END BASIC ERROR CHECKING
-// You need to create your own code to validate the information
-// and allowed values - never send "unclean" user responses
-// to a database without cleaning them up and
-// checking for allowed answers.
-// Google for "SQL injection" and "insecure contact form"
 
 // Do this if no errors were detected AND form has been submitted
 if ($error_msg == '' && isset($_POST['submit'])) {
@@ -120,11 +111,6 @@ if ($error_msg == '' && isset($_POST['submit'])) {
     exit;
 }
 
-// If PHP is still reading this, it must be the first page visit,
-// OR an error was detected.
-// Display the HTML page and your signup form.
-// include_once('/var/www/fcbikecoop.org/root/header.php');
-
 // If the form has been submitted,
 // display the error messages above the form.
 if (isset($_POST['submit'])) {
@@ -132,7 +118,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<form method="POST" action="<?php echo $PHP_SELF; ?>" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data">
     <h1>Abandoned Bike Report</h1>
     <FONT SIZE=2 STYLE="font-size: 10pt">
         <p>If you come across a bike that you believe has been lost or abandoned, we'll take care of it and get it back
@@ -160,13 +146,15 @@ if (isset($_POST['submit'])) {
             Address: <input name="address" type="text" id="address" size="35" maxlength="50"
                             value="<?php echo $address ?>">
         <p>Phone: <input name="phone" type="text" id="phone" size="13" maxlength="13" value="<?php echo $phone ?>">
-        <p>Location of bike at the above address: <input name="location" type="text" id="location" size="25"
-                                                         maxlength="35" value="<?php echo $location ?>">
+        <p>Location of bike at the above address: 
+        <input name="location" type="text" id="location" size="25"
+                    maxlength="35" value="<?php echo $location ?>">
         <h4>BIKE DESCRIPTION</h4>
         <p>Brand: <input name="brand" type="text" id="brand" size="15" maxlength="25" value="<?php echo $brand ?>">
             Model: <input name="model" type="text" id="model" size="15" maxlength="25" value="<?php echo $model ?>">
             Color: <input name="color" type="text" id="color" size="15" maxlength="25" value="<?php echo $color ?>">
-        <p>Is it locked? <Input type='Radio' Name='locked'
+        <p>Is it locked? 
+        	<Input type='Radio' Name='locked'
                                 value='yes' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'yes' ? ' checked' : ''; ?>>Yes
             <Input type='Radio' Name='locked'
                    value='no' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'no' ? ' checked' : ''; ?>>No
@@ -183,11 +171,7 @@ if (isset($_POST['submit'])) {
         <p>Any special instructions or extra information you'd like us to know.</p>
         <textarea name="info" cols=80 rows=3><?php echo $info ?></textarea>
         <p>Questions should be emailed to the Bike Retrieval Squad (BARS) Coordinator at
-            <a href="mailto:bars@fcbikecoop.org">bars@fcbikecoop.org</a>.</p>
-        <?php
-        require_once('/var/www/fcbikecoop.org/root/recaptcha/recaptchalib.php');
-        $publickey = "6LcljgQAAAAAAL1T9O8K4Rv0n3at7RUhFQBsLnoG";
-        echo recaptcha_get_html($publickey, $error);
-        ?>
+            <a href="mailto:bars@fcbikecoop.org">bars@fcbikecoop.org</a>.
+        </p>
         <br><br><input type="submit" value="Send" name="submit">
 </form>
