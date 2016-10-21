@@ -28,6 +28,7 @@ $location = '';
 $brand = '';
 $model = '';
 $color = '';
+$locked = false;
 $lock = false;
 $howlong = '';
 $info = '';
@@ -47,19 +48,19 @@ if (isset ($_POST['submit'])) {
         if (empty($_POST['contact']) == FALSE && sanityCheck($_POST['contact'], 'string', 25) != FALSE) {
             $contact = ucwords($_POST['contact']);
         } else {
-            $error_msg .= "* contact name is not set<br />";
+            $error_msg .= "* Please make sure you enter your name<br />";
         }
         // check the POST variable address is sane, and is not empty
         if (empty($_POST['address']) == FALSE && sanityCheck($_POST['address'], 'string', 50) != FALSE) {
             $address = ucwords($_POST['address']);
         } else {
-            $error_msg .= "* address is not set<br />";
+            $error_msg .= "* Please include an address<br />";
         }
         // check the POST variable phone is sane, and is not empty
         if (empty($_POST['phone']) == FALSE && sanityCheck($_POST['phone'], 'string', 13) != FALSE) {
             $phone = $_POST['phone'];
         } else {
-            $error_msg .= "* please provide a phone number so we can contact you<br />";
+            $error_msg .= "* Please provide a phone number so we can contact you<br />";
         }
         // Remove the escape characters from the info text.
         $info = stripslashes($_POST['info']);
@@ -68,10 +69,6 @@ if (isset ($_POST['submit'])) {
 
 // Do this if no errors were detected AND form has been submitted
 if ($error_msg == '' && isset($_POST['submit'])) {
-    //Close the session
-    session_write_close();
-
-    // No errors were detected.
     // Send the request.
     // get the radio button selection
     $locked = $_POST['locked'];
@@ -142,34 +139,34 @@ if (isset($_POST['submit'])) {
         <p>Thank you for helping keep bikes out of the landfill and getting them back on the road!
         </p>
         <h4>CONTACT INFORMATION</h4>
-        <p>Name: <input name="contact" type="text" id="contact" size="15" maxlength="25" value="<?php echo $contact ?>">
+        <p>Name: <input name="contact" type="text" id="contact" size="15" maxlength="25" value="<?php echo $contact; ?>">
             Address: <input name="address" type="text" id="address" size="35" maxlength="50"
-                            value="<?php echo $address ?>">
-        <p>Phone: <input name="phone" type="text" id="phone" size="13" maxlength="13" value="<?php echo $phone ?>">
+                            value="<?php echo $address; ?>">
+        <p>Phone: <input name="phone" type="text" id="phone" size="13" maxlength="13" value="<?php echo $phone; ?>">
         <p>Location of bike at the above address: 
         <input name="location" type="text" id="location" size="25"
-                    maxlength="35" value="<?php echo $location ?>">
+                    maxlength="35" value="<?php echo $location; ?>">
         <h4>BIKE DESCRIPTION</h4>
-        <p>Brand: <input name="brand" type="text" id="brand" size="15" maxlength="25" value="<?php echo $brand ?>">
-            Model: <input name="model" type="text" id="model" size="15" maxlength="25" value="<?php echo $model ?>">
-            Color: <input name="color" type="text" id="color" size="15" maxlength="25" value="<?php echo $color ?>">
+        <p>Brand: <input name="brand" type="text" id="brand" size="15" maxlength="25" value="<?php echo $brand; ?>">
+            Model: <input name="model" type="text" id="model" size="15" maxlength="25" value="<?php echo $model; ?>">
+            Color: <input name="color" type="text" id="color" size="15" maxlength="25" value="<?php echo $color; ?>">
         <p>Is it locked? 
-        	<Input type='Radio' Name='locked'
-                                value='yes' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'yes' ? ' checked' : ''; ?>>Yes
-            <Input type='Radio' Name='locked'
+        	<input type='radio' name='locked'
+                   value='yes' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'yes' ? ' checked' : ''; ?>>Yes
+            <input type='radio' name='locked'
                    value='no' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'no' ? ' checked' : ''; ?>>No
             <span style="margin-left:45px"> If locked, what type of lock?
 <select name="lock" id="lock">
-			<option value="<?php echo $lock ?>" selected="selected"><?php echo $lock ?></option>
+			<option value="<?php echo $lock; ?>" selected="selected"><?php echo $lock; ?></option>
 			<option value="Ulock">U-lock</option>
 			<option value="cable">cable</option>
 			<option value="chain">chain</option>
 		</select>
 </span>
         <p>How many days has the bike been in it's current location?
-            <input name="howlong" type="number" id="howlong" size="3" maxlength="3" value="<?php echo $howlong ?>"></p>
+            <input name="howlong" type="number" id="howlong" size="3" maxlength="3" value="<?php echo $howlong; ?>"></p>
         <p>Any special instructions or extra information you'd like us to know.</p>
-        <textarea name="info" cols=80 rows=3><?php echo $info ?></textarea>
+        <textarea name="info" cols=80 rows=3><?php echo $info; ?></textarea>
         <p>Questions should be emailed to the Bike Retrieval Squad (BARS) Coordinator at
             <a href="mailto:bars@fcbikecoop.org">bars@fcbikecoop.org</a>.
         </p>
