@@ -23,3 +23,10 @@ function fcbc_abandoned_bike_form() {
 	include 'abandoned-bike.php';
 	return ob_get_clean();
 }
+
+add_shortcode( 'fcbc_mailing_list', 'fcbc_mailing_list' );
+function fcbc_mailing_list() {
+	ob_start();
+	include 'mailing-list.php';
+	return ob_get_clean();
+}
