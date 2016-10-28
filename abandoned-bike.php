@@ -120,65 +120,114 @@ if ($error_msg == '' && isset($_POST['submit'])) {
 // If the form has been submitted,
 // display the error messages above the form.
 if (isset($_POST['submit'])) {
-    echo "<font color=\"red\" size=\"3\">The following problems were detected:<br><i>" . $error_msg . "</i></font><br>";
+    echo '<div data-alert class="alert-box alert">'.$error_msg.'</div>';
 }
 ?>
 
 <form method="POST" enctype="multipart/form-data">
-    <h1>Abandoned Bike Report</h1>
-    <FONT SIZE=2 STYLE="font-size: 10pt">
-        <p>If you come across a bike that you believe has been lost or abandoned, we'll take care of it and get it back
-            to its owner or back on the road. (Note: we don't have the authority to pick up a bike unless it's been in
-            the same location for over 48 hours.)
-        <ul>
-            <li>If possible, please bring the bike by the <a href="http://fcbikecoop.org/contact.php">Bike Co-op</a>
-                during <a href="http://fcbikecoop.org/calendar.php/">open retail/shop hours</a>. If not possible, please
-                fill in the following form to the best of your ability. Click on the Send button when you have completed
-                the form.
-            <li>You will hear from us within one day of reporting the bike so we can set up a pick up time that works
-                for both of us.
-            <li>If you'd like us to come and pick up the bike, please ensure that it will still be there when we arrive
-                by pulling the bike as close to your building or residence as possible.
-            <li>If the bike is locked, please note what type of lock it is, U-Lock or cable, as we need different tools
-                to remove each.
-            <li>Abandoned bikes are cross checked with police reports of stolen bikes, held for at least 30 days at our
-                shop, advertised on the city's website, then released into one of our programs that help community
-                members attain reliable transportation.
-        </ul>
-        <p>Thank you for helping keep bikes out of the landfill and getting them back on the road!
-        </p>
-        <h4>CONTACT INFORMATION</h4>
-        <p>Name: <input name="contact" type="text" id="contact" size="15" maxlength="25"
-                        value="<?php echo $contact; ?>">
-            Address: <input name="address" type="text" id="address" size="35" maxlength="50"
-                            value="<?php echo $address; ?>">
-        <p>Phone: <input name="phone" type="text" id="phone" size="13" maxlength="13" value="<?php echo $phone; ?>">
-        <p>Location of bike at the above address:
-            <input name="location" type="text" id="location" size="25"
-                   maxlength="35" value="<?php echo $location; ?>">
-        <h4>BIKE DESCRIPTION</h4>
-        <p>Brand: <input name="brand" type="text" id="brand" size="15" maxlength="25" value="<?php echo $brand; ?>">
-            Model: <input name="model" type="text" id="model" size="15" maxlength="25" value="<?php echo $model; ?>">
-            Color: <input name="color" type="text" id="color" size="15" maxlength="25" value="<?php echo $color; ?>">
-        <p>Is it locked?
-            <input type='radio' name='locked'
+<div class="row">
+	<h4>Contact Information</h4>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Name
+				<input name="contact" type="text" id="contact" value="<?php echo $contact; ?>"> 
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Address
+				<input name="address" type="text" id="address"
+					value="<?php echo $address; ?>"> 
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Phone
+				<input name="phone" type="text" id="phone" value="<?php echo $phone; ?>">
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Location of bike at the above address:
+				<input name="location" type="text" id="location"
+					value="<?php echo $location; ?>">
+			</label>
+	    </div>
+	</div>
+</div> 
+<div class="row">
+	<h4>BIKE DESCRIPTION</h4>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Brand
+				<input name="brand" type="text" id="brand"
+					value="<?php echo $brand; ?>">
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Model
+				<input name="model" type="text" id="model"
+					value="<?php echo $model; ?>">
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Color
+				<input name="color" type="text" id="color" 
+					value="<?php echo $color; ?>">
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Is it locked?
+				<input type='radio' name='locked'
                    value='yes' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'yes' ? ' checked' : ''; ?>>Yes
             <input type='radio' name='locked'
                    value='no' <?php echo isset($_POST['locked']) && $_POST['locked'] == 'no' ? ' checked' : ''; ?>>No
-            <span style="margin-left:45px"> If locked, what type of lock?
-<select name="lock" id="lock">
-			<option value="<?php echo $lock; ?>" selected="selected"><?php echo $lock; ?></option>
-			<option value="Ulock">U-lock</option>
-			<option value="cable">cable</option>
-			<option value="chain">chain</option>
-		</select>
-</span>
-        <p>How many days has the bike been in it's current location?
-            <input name="howlong" type="number" id="howlong" size="3" maxlength="3" value="<?php echo $howlong; ?>"></p>
-        <p>Any special instructions or extra information you'd like us to know.</p>
-        <textarea name="info" cols=80 rows=3><?php echo $info; ?></textarea>
-        <p>Questions should be emailed to the Bike Retrieval Squad (BARS) Coordinator at
-            <a href="mailto:bars@fcbikecoop.org">bars@fcbikecoop.org</a>.
-        </p>
-        <br><br><input type="submit" value="Send" name="submit">
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>If locked, what type of lock?
+				<select name="lock" id="lock">
+					<option value="<?php echo $lock; ?>" selected="selected"><?php echo $lock; ?></option>
+					<option value="Ulock">U-lock</option>
+					<option value="cable">cable</option>
+					<option value="chain">chain</option>
+				</select>
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>How many days has the bike been in it's current location?
+				<input name="howlong" type="number" id="howlong" 
+					value="<?php echo $howlong; ?>">
+			</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<label>Any special instructions or extra information you'd like us to know
+				<textarea name="info" cols=80 rows=3><?php echo $info; ?></textarea>
+			</label>
+	    </div>
+	</div>
+    <p>Questions should be emailed to the Bike Retrieval Squad (BARS) Coordinator at
+        <a href="mailto:bars@fcbikecoop.org">bars@fcbikecoop.org</a>.
+    </p>
+    <div class="row">
+		<div class="large-12 columns">
+			<input class="button" type="submit" value="Send" name="submit">
+	    </div>
+	</div>
+</div>   
 </form>
