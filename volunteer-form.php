@@ -1,20 +1,28 @@
-
 <form method="POST" enctype="multipart/form-data">
-<table width="550">
-    <div class="heading">FC Bike Co-op Volunteer Application</div>
-    <tr>
-        <td align=left colspan="2">This application will let us know of your intent to volunteer and we'll get you plugged into the co-op via email. After you're tied in and get some volunteer hours under your belt you will be eligible for volunteer privileges. <b>Fields marked with ** are required.</b>
-    </tr>
-    <tr>
-        <td align=right width="25%">First Name:</td>
-        <td align=left><input name="first_name" type="text" id="firstname" size="35" maxlength="25"
-                              value="<?php echo $first_name ?>"> <b>**</b>
-    </tr>
-    <tr>
-        <td align=right width="25%">Last Name:</td>
-        <td align=left><input name="last_name" type="text" id="lastname" size="35" maxlength="25"
-                              value="<?php echo $last_name ?>"> <b>**</b>
-    </tr>
+<div class="row">
+    <h1>FC Bike Co-op Volunteer Application</h1>
+    <div class="row">
+        This application will let us know of your intent to volunteer and we'll get you plugged into the co-op via email. After you're tied in and get some volunteer hours under your belt you will be eligible for volunteer privileges. <b>Fields marked with ** are required.
+    </div>
+    <div class="row">
+        <div class="small-3 columns">
+            <label for="first-name" class="right inline">** First Name:</label>
+        </div>
+        <div class="small-9 columns">
+          <input id="first-name" name="first_name" type="text" 
+            value="<?php echo $first_name ?>">
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-3 columns">
+            <label for="last-name" class="right inline">** Last Name:</label>
+        </div>
+        <div class="small-9 columns">
+            <input name="last_name" type="text" id="last-name" 
+                value="<?php echo $last_name ?>">
+        </div>
+    </div>
+</div>
     <tr>
         <td align=right width="25%">Phone:</td>
         <td align=left><input name="phone" type="text" id="phone" size="35" maxlength="15"
