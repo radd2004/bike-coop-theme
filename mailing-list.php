@@ -21,7 +21,14 @@ if (isset($_POST['email'])) {//if "email" is filled out, proceed
 	}
 }
 
-echo '<form method="post">
-		<input name="email" placeholder="Your email" type="text">
-		<input type="submit" value="Join">
-	</form>';
+?>
+<form method="post">
+<div class="row">
+	<div class="small-3 columns">
+		<label for="email-label" class="right inline">Your Email</label>
+	</div>
+	<div class="small-9 columns">
+		<input name="email" type="email" id="email-label">
+	</div>
+</div>
+</form>
